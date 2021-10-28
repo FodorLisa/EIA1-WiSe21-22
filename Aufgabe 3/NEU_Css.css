@@ -44,8 +44,10 @@ li {
             background-color: #b63514;
             border-radius: 50%;
             position: absolute;
-            left: 500px;
-            top: -300px;
+            margin-top: -200;
+            margin-bottom: -150px;
+            margin-right: 550px;
+            margin-left: 80px;
             z-index: -1;
         }
 ul {
