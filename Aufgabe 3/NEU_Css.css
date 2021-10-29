@@ -52,6 +52,10 @@ p {
     text-align: center;
     font-size: 10px;
 }
+.text {
+    color: black;
+    margin-left: 80px;
+}
 header {
         display: flex;
         justify-content: flex-end;
