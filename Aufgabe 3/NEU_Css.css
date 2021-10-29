@@ -2,14 +2,37 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     background-image: url(bg.png);
 }
-div, video {
+video {
+    display: block;
     width: 800px;
-    margin-left: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 0px 5px;
+}
+.Bildgroß {
+    display: block;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 0px 5px;
+}
+.Facebook {
+    display: block;
+    width: 30 px;
+    position: absolute;
+    left: 900px;
+}
+.introText {
+    text-align: right;
+    width: 10%;
+    margin-left: auto;
+    padding-right: 800px;
+    
 }
 h1 {
     font-size: 150px;
     text-align:center;
-    margin:auto;
+    margin:-20px 0px 0px;
     color: white
     }
 h2 {
@@ -17,10 +40,10 @@ h2 {
         margin-left: 80px;
         color: white;
         text-align:center;
-     margin:auto;
+        margin:-20px 0px 0px;
         }
 h3 {
-    font-size: 60px;
+    font-size: 50px;
     margin-left: 80px;
     color: #b63514;
     }
@@ -38,15 +61,16 @@ header {
 li {
     display: inline
 }
-#Kreis {
+.Kreis {
             width: 750px;
             height: 750px;
             background-color: #b63514;
             border-radius: 50%;
-            position: absolute;
             display: block;
-            margin-right: 290px;
-            margin-left: 290px;
+            position: absolute;
+            margin: -400px 0px 80px;
+            margin-right: 500px;
+            margin-left: 550px;
             z-index: -1;
         }
 ul {
