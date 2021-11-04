@@ -20,7 +20,7 @@ video {
     display: block;
     width: 30 px;
     position: absolute;
-    left: 900px;
+    left: 800px;
 }
 .introText {
     text-align: right;
@@ -72,9 +72,9 @@ li {
             border-radius: 50%;
             display: block;
             position: absolute;
-            margin: -400px 0px 80px;
-            margin-right: 500px;
-            margin-left: 550px;
+            margin: -380px 0px 80px;
+            margin-right: 400px;
+            margin-left: 350px;
             z-index: -1;
         }
 ul {
