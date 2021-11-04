@@ -1,0 +1,50 @@
+body {
+    background-image: url(bg.png);
+}
+.Karte {
+    position: relative;
+    top: 100px;
+    left: 200px;
+    display: block;
+}
+.Busch {
+    position: absolute;
+    top: 40px;
+    left: 150px;
+}
+.Geschenk {
+    position: absolute;
+    top: 380px;
+    left: 590px;}
+.Überschrift {
+    width: 500px;
+    font-size: 35px;
+    position: absolute;
+    color: white;
+    top: 200px;
+    left: 280px;
+    text-align: left;
+}
+.Text {
+    width: 300px;
+    font-size: 18px;
+    position: absolute;
+    color: white;
+    top: 280px;
+    left: 280px;
+    text-align: left;
+}
+.video {
+    
+    object-fit: cover;
+    width: 180px;
+    height: 320px;
+    position: absolute;
+    top: 150px;
+    left: 600px;
+}
+.Stern1 {
+    position: absolute;
+    top: 160px;
+    left: 350px;}
+}

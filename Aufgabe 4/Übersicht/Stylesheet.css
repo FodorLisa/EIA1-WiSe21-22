@@ -1,0 +1,25 @@
+body {
+    background-image: url(R2.jpg);
+    background-size: auto 1100px;
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+h1{
+font-size: 50px;
+font-family:Verdana, Geneva, Tahoma, sans-serif;
+color: rgb(241, 92, 92);
+}
+a:link, a:visited {
+    background-color: white;
+    color: rgb(0, 0, 0);
+    padding: 20px 50px;
+    font-size: 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    left: center;
+  }
+  
+  a:hover, a:active {
+    background-color: rgb(136, 46, 46);
+  }
