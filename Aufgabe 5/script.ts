@@ -9,7 +9,7 @@ var africa2008: number = 1028;
 var africa2018: number = 1235.5;
 var africa0818: number = africa2008 - africa2018;
 var africaPr : Number = (africa2018/africa2008-1)*100;
-var AfrikaAntWelt: Number= africaGs / gesamt *100; 
+var AfrikaAntWelt: Number= africaGs / gesamt ; 
 
 /* Konsole Afrika */
 console.log ("Die Emission von Afrika ist "+ africaGs + "kg CO2");
@@ -23,7 +23,7 @@ var southAmerica2018: number = 1261.5;
 var southAmericaGesamt: number = 1132.6+1093.1+1164.2+1215.5+126+1308.9+1331.3+1321.7+1294.7+1279.2+1261.5;
 var southAmerica0818: number = southAmerica2008 - southAmerica2018 ;
 var southAmericaPr: number = (southAmerica2018 / southAmerica2008-1)* 100;
-var southAmericaAntWelt: number = southAmericaGesamt/ gesamt * 100;              
+var southAmericaAntWelt: number = southAmericaGesamt/ gesamt;              
 
 /* Konsole Süd Amerika */
 console.log("Die Emission von Süd Amerika ist "+ southAmericaGesamt + "kg CO2");
@@ -37,7 +37,7 @@ var europa2018: number = 4209.3;
 var europa08:number=4965.7;
 var europa0818:number=europa08-europa2018;
 var europapr:number = (europa2018/ europa08-1) *100 ;
-var europaAnteilWelt: number =  europaGs / gesamt*100 ;
+var europaAnteilWelt: number =  europaGs / gesamt;
 
 /* Konsole Europa */
 console.log("Die Emission von Europa ist "+ europaGs + "kg CO2");
@@ -51,7 +51,7 @@ var northAmerica2018: number = 6035.6;
 var northAmerica08:number=6600.4;
 var northAmerica0818:number= northAmerica08-northAmerica2018;
 var northAmericapr:number = (northAmerica08 / northAmerica2018-1)*100 ;
-var northAmericaAnteilWelt: number = northAmericaGs/ gesamt *100 ;
+var northAmericaAnteilWelt: number = northAmericaGs/ gesamt;
 
 /* Konsole Nord Amerika */
 console.log("Die Emission von Nord Amerika ist "+ northAmericaGs + "kg CO2");
@@ -65,7 +65,7 @@ var asia2018: number = 16274.1;
 var asia08:number=12954.7;
 var asia0818:number= asia08-asia2018;
 var asiapr:number = (asia08 / asia2018-1)*100 ;
-var asiaAnteilWelt: number = asiaGs/ gesamt *100 ;
+var asiaAnteilWelt: number = asiaGs/ gesamt ;
 
 /* Konsole Asien */
 console.log("Die Emission von Asien ist "+ asiaGs + "kg CO2");
@@ -79,7 +79,7 @@ var australia2018: number = 2100.5;
 var australia08:number=1993;
 var australia0818:number= australia08 - australia2018;
 var australiapr:number = (australia08 / australia2018-1)*100 ;
-var australiaAnteilWelt: number = australiaGs/ gesamt *100 ;
+var australiaAnteilWelt: number = australiaGs/ gesamt  ;
 
 /* Konsole Australien */
 console.log("Die Emission von Australien ist "+ australiaGs + "kg CO2");

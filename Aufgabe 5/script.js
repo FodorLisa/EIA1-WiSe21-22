@@ -8,7 +8,7 @@ var africa2008 = 1028;
 var africa2018 = 1235.5;
 var africa0818 = africa2008 - africa2018;
 var africaPr = (africa2018 / africa2008 - 1) * 100;
-var AfrikaAntWelt = africaGs / gesamt * 100;
+var AfrikaAntWelt = africaGs / gesamt;
 /* Konsole Afrika */
 console.log("Die Emission von Afrika ist " + africaGs + "kg CO2");
 console.log("Relativ zur Gesamtemission der Welt verursacht Afrika damit " + AfrikaAntWelt.toFixed(1) + " %");
@@ -20,7 +20,7 @@ var southAmerica2018 = 1261.5;
 var southAmericaGesamt = 1132.6 + 1093.1 + 1164.2 + 1215.5 + 126 + 1308.9 + 1331.3 + 1321.7 + 1294.7 + 1279.2 + 1261.5;
 var southAmerica0818 = southAmerica2008 - southAmerica2018;
 var southAmericaPr = (southAmerica2018 / southAmerica2008 - 1) * 100;
-var southAmericaAntWelt = southAmericaGesamt / gesamt * 100;
+var southAmericaAntWelt = southAmericaGesamt / gesamt;
 /* Konsole Süd Amerika */
 console.log("Die Emission von Süd Amerika ist " + southAmericaGesamt + "kg CO2");
 console.log("Relativ zur Gesamtemission der Welt verursacht Süd Amerika damit " + southAmericaAntWelt.toFixed(1) + " %");
@@ -32,7 +32,7 @@ var europa2018 = 4209.3;
 var europa08 = 4965.7;
 var europa0818 = europa08 - europa2018;
 var europapr = (europa2018 / europa08 - 1) * 100;
-var europaAnteilWelt = europaGs / gesamt * 100;
+var europaAnteilWelt = europaGs / gesamt;
 /* Konsole Europa */
 console.log("Die Emission von Europa ist " + europaGs + "kg CO2");
 console.log("Relativ zur Gesamtemission der Welt verursacht Europa damit " + europaAnteilWelt.toFixed(1) + " %");
@@ -44,7 +44,7 @@ var northAmerica2018 = 6035.6;
 var northAmerica08 = 6600.4;
 var northAmerica0818 = northAmerica08 - northAmerica2018;
 var northAmericapr = (northAmerica08 / northAmerica2018 - 1) * 100;
-var northAmericaAnteilWelt = northAmericaGs / gesamt * 100;
+var northAmericaAnteilWelt = northAmericaGs / gesamt;
 /* Konsole Nord Amerika */
 console.log("Die Emission von Nord Amerika ist " + northAmericaGs + "kg CO2");
 console.log("Relativ zur Gesamtemission der Welt verursacht Nord Amerika damit " + northAmericaAnteilWelt.toFixed(1) + " %");
@@ -56,7 +56,7 @@ var asia2018 = 16274.1;
 var asia08 = 12954.7;
 var asia0818 = asia08 - asia2018;
 var asiapr = (asia08 / asia2018 - 1) * 100;
-var asiaAnteilWelt = asiaGs / gesamt * 100;
+var asiaAnteilWelt = asiaGs / gesamt;
 /* Konsole Asien */
 console.log("Die Emission von Asien ist " + asiaGs + "kg CO2");
 console.log("Relativ zur Gesamtemission der Welt verursacht Asien damit " + asiaAnteilWelt.toFixed(1) + " %");
@@ -68,7 +68,7 @@ var australia2018 = 2100.5;
 var australia08 = 1993;
 var australia0818 = australia08 - australia2018;
 var australiapr = (australia08 / australia2018 - 1) * 100;
-var australiaAnteilWelt = australiaGs / gesamt * 100;
+var australiaAnteilWelt = australiaGs / gesamt;
 /* Konsole Australien */
 console.log("Die Emission von Australien ist " + australiaGs + "kg CO2");
 console.log("Relativ zur Gesamtemission der Welt verursacht Australien damit " + australiaAnteilWelt.toFixed(1) + " %");
