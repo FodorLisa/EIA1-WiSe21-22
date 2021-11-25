@@ -1,4 +1,4 @@
-/* Funktion Buttons*/
+var Beat = [new Audio("assets/kick.mp3"), new Audio("assets/hihat.mp3"), new Audio("assets/snare.mp3"), new Audio("assets/A.mp3"), new Audio("assets/C.mp3"), new Audio("assets/F.mp3"), new Audio("assets/G.mp3"), new Audio("assets/laugh-1.mp3"), new Audio("assets/laugh-2.mp3")];
 window.addEventListener("load", function () {
     document.querySelector("#Sound1").addEventListener("mousedown", function () { playSample(["assets/kick.mp3"]); });
     document.querySelector("#Sound2").addEventListener("mousedown", function () { playSample("assets/hihat.mp3"); });
@@ -16,7 +16,6 @@ function playSample(samples) {
     sound.play();
 }
 ;
-/* Funktion Play Button mit Array*/
 function Play() {
     var Kick = setInterval(party, 280);
     var Beat = ["assets/kick.mp3", "assets/hihat.mp3", "assets/snare.mp3", "assets/hihat.mp3",];
@@ -31,4 +30,4 @@ function Play() {
     ;
 }
 ;
-//# sourceMappingURL=script.js.map
+//# sourceMappingURL=script-DESKTOP-EI8P3FI.js.map
