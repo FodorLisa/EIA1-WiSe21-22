@@ -1,0 +1,38 @@
+.Box {
+    position: relative;
+    top: 100px;
+    left: center;
+    width: 500px;
+    height: 200px;
+    background-color: white;
+    margin: 20px auto;
+    padding: 20px;
+}
+body {
+    background-color: black;
+}
+.element-top-left {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+.element-top-right {
+    position: absolute;
+    left: 0px;
+    top: 40px;
+}
+.element-bottom-left {
+    position: relative;
+    left: -20px;
+    top: 165px;
+}
+.element-bottom-right {
+    position: relative;
+    left: 500px;
+    top: 150px
+}
+.element-center {
+    position: relative;
+    left: 200px;
+    top:25px;
+}

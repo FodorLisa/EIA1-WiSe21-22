@@ -1,0 +1,185 @@
+/* Hintergrund */
+body {
+    background: black;
+}
+/* Style + Hover Funktion Button 1 */
+.b1{
+    position: absolute;
+    left: 550px;
+    top: 60px;
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    border-width: 4px;
+    background-color:  #1e90ff;
+    border-color: #389dff;
+    outline: none;
+  }
+.b1:hover{
+    transform: scale(1.05);
+    }
+/* Style + Hover Funktion Button 2 */
+.b2 {
+    position: absolute;
+    left: 710px;
+    top: 60px;
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    border-width: 4px;
+    background-color:  #1e90ff;
+    border-color: #389dff;
+    outline: none;
+}
+.b2:hover{
+    transform: scale(1.05);
+    }
+/* Style + Hover Funktion Button 3 */
+.b3 {
+    position: absolute;
+    left: 870px;
+    top: 60px;
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    border-width: 4px;
+    background-color:  #1e90ff;
+    border-color: #389dff;
+    outline: none;
+}
+.b3:hover{
+    transform: scale(1.05);
+    }
+/* Style + Hover Funktion Button 4 */
+.b4 {
+        position: absolute;
+        left: 550px;
+        top: 220px;
+        width: 150px;
+        height: 150px;
+        border-radius: 15px;
+        border-width: 4px;
+        background-color:  #ff389d;
+        border-color: #ff52aa;
+        outline: none;
+}
+ .b4:hover{
+        transform: scale(1.05);
+}
+/* Style + Hover Funktion Button 5 */
+.b5 {
+    position: absolute;
+    left: 710px;
+    top: 220px;
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    border-width: 4px;
+    background-color:  #ff389d;
+    border-color: #ff52aa;
+    outline: none;
+}
+.b5:hover{
+    transform: scale(1.05);
+}
+/* Style + Hover Funktion Button 6 */
+.b6 {
+    position: absolute;
+    left: 870px;
+    top: 220px;
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    border-width: 4px;
+    background-color:  #ff389d;
+    border-color: #ff52aa;
+    outline: none;
+}
+.b6:hover{
+    transform: scale(1.05);
+}
+/* Style + Hover Funktion Button 7 */
+.b7 {
+    position: absolute;
+    left: 550px;
+    top: 380px;
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    border-width: 4px;
+    background-color:  #ff389d;
+    border-color: #ff52aa;
+    outline: none;
+}
+.b7:hover{
+    transform: scale(1.05);
+}
+/* Style + Hover Funktion Button 8 */
+.b8 {
+    position: absolute;
+    left: 710px;
+    top: 380px;
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    border-width: 4px;
+    background-color:  #ff8c00;
+    border-color: #ff981a;
+    outline: none;
+}
+.b8:hover{
+    transform: scale(1.05);
+}
+/* Style + Hover Funktion Button 9 */
+.b9 {
+    position: absolute;
+    left: 870px;
+    top: 380px;
+    width: 150px;
+    height: 150px;
+    border-radius: 15px;
+    border-width: 4px;
+    background-color:  #ff8c00;
+    border-color: #ff981a;
+    outline: none;
+}
+.b9:hover{
+    transform: scale(1.05);
+}
+/* Style + Hover Funktion Play Button unten*/
+#playB {
+    position: absolute;
+    left: 570px;
+    top: 550px;
+    font-size: 100px;
+    color: #ff389d;
+    opacity: 50%;
+}
+#playB:hover {
+    transform: scale(1.05);
+    opacity: 100%;
+}
+#trash {
+    position: absolute;
+    left: 910px;
+    top: 550px;
+    font-size: 100px;
+    color: #ff389d;
+    opacity: 50%;
+}
+#trash:hover {
+    transform: scale(1.05);
+    opacity: 100%;
+}
+#shuffle {
+        position: absolute;
+        left: 740px;
+        top: 550px;
+        font-size: 100px;
+        color: #ff389d;
+        opacity: 50%;
+}
+#shuffle:hover {
+    transform: scale(1.05);
+    opacity: 100%;
+}
