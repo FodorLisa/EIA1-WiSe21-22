@@ -62,12 +62,10 @@ function DeleteTheBeat() {
 }
 /* Erstellen Remix */
 function RemixBeat() {
-    sequence.length = 0;
+    sequence = [];
     for (var i = 0; i < 4; i++) {
-        const index = Math.floor(Math.random() * 8);
-        console.log(index);
-        playSample(mp3[index]);
-        console.log("Remix beat");
+        const index = Math.floor(Math.random() * mp3.length);
+        sequence.push(mp3[index]);
     }
     ;
 }
