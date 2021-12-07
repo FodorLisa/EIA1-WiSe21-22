@@ -64,6 +64,7 @@ function DeleteTheBeat(): void {
     console.log("Deleting beat");
 }
 /* Erstellen Remix */
+/* Achtung! Remix Button funktioniert nur wenn man erst auf den Remix Button geht und anschließend den Play Button drückt*/
 function RemixBeat(): void {
     sequence = [];
     for (var i: number = 0; i < 4; i++) {
