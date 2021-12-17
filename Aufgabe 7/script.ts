@@ -1,3 +1,4 @@
+namespace Aufgabe7{
 /* Funktion Buttons*/
 window.addEventListener("load", function (){
 
@@ -27,7 +28,5 @@ sequence.play();
 index += 1;
 if (index>3) index=0;
 };};
-
-
-
+}
 

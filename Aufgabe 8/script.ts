@@ -1,3 +1,4 @@
+namespace Aufgabe8{
 /* Funktionen Buttons*/
 window.addEventListener("load", function (): void {
 
@@ -72,4 +73,4 @@ function RemixBeat(): void {
         sequence.push (mp3 [index] ); 
     };
 }
-
+}

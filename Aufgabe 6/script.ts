@@ -1,3 +1,4 @@
+namespace Aufgabe6{
 /*Africa*/
 var countryAfrica: string = "Africa";
 var africa2008: number = 1028;
@@ -51,3 +52,4 @@ window.addEventListener("load", function() {
     document.querySelector(".asia").addEventListener("click" , function() { emission(countryAsia, asia2018, asia2008)})
     document.querySelector(".australia").addEventListener("click" , function() { emission(countryAustralia, africa2018, africa2008)})
 });
+}
