@@ -93,7 +93,7 @@ p {
 #record {
     display: flex;
     position: absolute;
-    left:550px;
+    left:560px;
     top: 180px;
     color: grey;
     cursor: pointer;
