@@ -1,8 +1,12 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: rgba(215, 215, 215);
+    font-family: 'Poppins', sans-serif;
+    background: url(R\ \(1\).jfif);
 }
-
+h1 {
+    font-family: 'Knewave', cursive;
+    color: white;
+    font-size: 80px;
+}
 main {
     width: 500px;
     margin: 0 auto;
@@ -12,7 +16,8 @@ p {
     font-size: 15px;
 }
 #counter, #open, #done {
-    color: grey;
+    color: white;
+    opacity: 50%;
 }
 
 .inputGroup {
@@ -94,39 +99,39 @@ p {
     display: flex;
     position: absolute;
     left:560px;
-    top: 180px;
-    color: grey;
+    top: 350px;
+    color:white;
     cursor: pointer;
-    font-size: 35px;
+    font-size: 30px;
 }
 
 #record:hover {
-    color: black;
+    color: grey;
 }
 #textRecord {
     position: absolute;
     left: 600px;
-    top:180px;
-    color: grey;
+    top:340px;
+    color: white;
 }
 @media only screen and (max-width: 600px){
 #record {
     display: flex;
     position: absolute;
     left:50px;
-    top: 180px;
-    color: grey;
+    top: 350px;
+    color: white;
     cursor: pointer;
     font-size: 25px;
 }
 #record:hover {
-    color: black;
+    color: grey;
 }
 #textRecord {
     position: absolute;
     left: 80px;
-    top:170px;
-    color: grey;
+    top:340px;
+    color: white;
 }
 }
 @media only screen and (min-width:601px)and (max-width: 1024px){
@@ -134,18 +139,18 @@ p {
         display: flex;
         position: absolute;
         left:150px;
-        top: 180px;
-        color: grey;
+        top: 350px;
+        color: white;
         cursor: pointer;
         font-size: 25px;
     }
     #record:hover {
-        color: black;
+        color: grey;
     }
     #textRecord {
         position: absolute;
         left: 180px;
-        top:170px;
-        color: grey;
+        top:340px;
+        color: white;
     }
     }
