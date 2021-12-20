@@ -1,7 +1,11 @@
 window.addEventListener("load", function (): void {
 /* Konstante für Eingabefeld*/
     const input: HTMLInputElement = (document.getElementById("toDo") as HTMLInputElement);
-    let index: number = 0;
+    let toDoCount: number = 0;
+    let openCount: number = 0;
+    let doneCount: number = 0;
+
+
     
     document.addEventListener("keydown", function (event: KeyboardEvent): void { 
         if (event.keyCode == 13) {
@@ -10,32 +14,18 @@ window.addEventListener("load", function (): void {
         }
     });
     
-    var done: number = 1;
-    var openTask: number = 2;
-
     /* Counter für Anzahl ToDos*/
-    var inputDOMElement: HTMLInputElement; 
-    var addButtonDOMElement: HTMLElement;
-    var todosDOMElement: HTMLElement;
-    // Hinzufügen Variablen Counter und Sprachsteuerung
-    var counterDOMElement: HTMLElement;
-    var openDOMElement: HTMLElement;
-    var doneDOMElement: HTMLElement;
-    var artyomOn: boolean = false;
-   
-    counterDOMElement = document.querySelector("#counter");
-    openDOMElement = document.querySelector("#open");
-    doneDOMElement = document.querySelector("#done");
-   
-    addButtonDOMElement.addEventListener("click", function(): void {
-        addTodo(inputDOMElement.value);
-    });
     function counter(): void {
-        document.querySelector("#counterToDo").innerHTML = String(index);
-        openDOMElement.innerHTML = openTask + " tasks open";
-        doneDOMElement.innerHTML = done + " tasks done";
+        document.querySelector("#counterToDo").innerHTML = String(toDoCount) + " in total";
     }
-    
+
+    function openCounter():void {
+        document.querySelector("#counterOpen").innerHTML = String(openCount) + " in total";
+    }
+
+    function doneCounter():void {
+    document.querySelector("#counterDone").innerHTML = String(doneCount) + " in total";
+    }
     /* Aufgabe wenn auf Trash Button gedrückt wird*/
     function clearInput(): void {
         input.value = "";
@@ -43,16 +33,19 @@ window.addEventListener("load", function (): void {
     
     /* To Do erstellen mit Anzeige Trash-Button, Checkbox und ToDo */
     function createToDo(): void {
-        index++;
+        toDoCount++;
+        openCount++;
+        updateCounter();
+        updateOpenCounter();
+        updatedoneCounter();
         counter();
     
-        var artyomOn: boolean = false;
         let wrapper: HTMLElement = document.getElementById("wrapIt");
         let placeHolder: HTMLDivElement = document.createElement("div");
         let checkbox: HTMLInputElement = document.createElement("input");
         let label: HTMLElement = document.createElement("label");
         let trashButton: HTMLElement = document.createElement("i");
-        
+          
         placeHolder.className = "placeHolder";
         checkbox.type = "checkbox";
         checkbox.className = "checkBox";
@@ -68,45 +61,10 @@ window.addEventListener("load", function (): void {
     
         trashButton.addEventListener("click", function (): void {
             wrapper.removeChild(placeHolder);
-            index--;
+            toDoCount--;
             counter();
-        });
-        addButtonDOMElement.addEventListener("click", function(): void {
-            todo(inputDOMElement.value);
         });
     
     }
-    window.addEventListener("load", function(): void {
-        const artyom: any = new Artyom();
-        artyom.addCommands({
-            smart: true,
-            indexes: ["Erstelle Aufgabe *"],
-            action: function (i: any, wildcard: string): void {
-            artyomOn = true;
-                todo(wildcard);
-            }
-        });
-    
-        document.querySelector("#record").addEventListener("click", function(): void {
-            artyom.dontObey();
-            artyom.initialize({
-                lang: "de-DE"
-            });
-            setTimeout(function (): void {
-                artyom.obey();
-            },         8000);
-            startArtyom();
-        });
-        function startArtyom(): void {
-            artyom.initialize({
-                    lang: "de-DE",
-                    continuous: true,
-                    listen: true,
-                    interimResults: true,
-                    debug: true,
-                    speed: 1
-            });
-        }
-    });
     
     });

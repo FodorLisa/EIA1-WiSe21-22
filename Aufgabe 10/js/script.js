@@ -17,8 +17,8 @@ var Aufgabe10;
     var inputDOMElement;
     var addButtonDOMElement;
     var todosDOMElement;
-    // Hinzufügen Variablen Counter und Sprachsteuerung
     var counterDOMElement;
+    // Hinzufügen Variablen Counter und Sprachsteuerung
     var openDOMElement;
     var doneDOMElement;
     var artyomOn = false;
@@ -49,7 +49,6 @@ var Aufgabe10;
                 deleteTodo(index);
             });
             todosDOMElement.appendChild(todo);
-            //Localstorage:
             const key = inputDOMElement.value;
             const storageValue = inputDOMElement.value;
             localStorage.setItem(key, storageValue);
@@ -61,7 +60,7 @@ var Aufgabe10;
     var openTask = 2;
     //Funktion für Variablen
     function updateCounter() {
-        counterDOMElement.innerHTML = todosArray.length;
+        counterDOMElement.innerHTML = todosArray.length + " in total";
         openDOMElement.innerHTML = openTask + " tasks open";
         doneDOMElement.innerHTML = done + " tasks done";
     }
