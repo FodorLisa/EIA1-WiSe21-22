@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Endabgabe Kartenspiel</title>
+</head>
+<body>
+<!--Spielfläche  -->
+<div id="desk">
+<div class="text">Hand</div>
+<div class="text">Hand</div>
+<div class="text">Hand</div>
+<div class="text">Hand</div>
+<div class="text">Hand</div>
+
+<!--Fläche für Handkarten  -->
+<div id="card0" class="cards"></div>
+<div id="card1" class="cards"></div>
+<div id="card2" class="cards"></div>
+<div id="card3" class="cards"></div>
+<div id="card4" class="cards"></div>
+
+<!--Karten + Fläche Computerspieler  -->
+<div id="deskPC">
+<div id="card5" class="cardsPC"></div>
+<div id="card6" class="cardsPC"></div>
+<div id="card7" class="cardsPC"></div>
+<div id="card8" class="cardsPC"></div>
+<div id="card9" class="cardsPC"></div>
+</div>
+</div>
+
+<!--Stapel zum Ziehen der Karten  -->
+
+<!--Ablagestapel -->
+<div id="stapel">
+<div id="cardStackOld" class="cardsOld"></div>
+<div class="textA">Ablage</div>
+    
+<div id="cardStackNew" class="cardsStack" onclick="drawCards();"><img src="cards/card-back.png" alt=""></div>
+<div class="textD">Deck</div>
+</div>
+
+
+
+
+</div>
+
+<footer> 
+        Lisa Fodor | 269998
+</footer>    
+</body>
+</html>
+
+
+<!--<div class="Card" id="oval">
+    <p class="bigNumber">2</p>
+    <p class="smallNumber1">2</p>
+    <p class="smallNumber2">2</p>
+-->
