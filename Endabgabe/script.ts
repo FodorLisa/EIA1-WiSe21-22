@@ -1,6 +1,6 @@
 namespace Kartenspiel {
     //Konstanten um Karten zu erstellen
-    interface cards {
+    interface Cards {
         color: string;
         values: string;
     }
@@ -8,7 +8,7 @@ namespace Kartenspiel {
     const allValues: string[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
     //Leeres Array um Karten zwischenzulagern
-    let allCards: cards[] = [];
+    let allCards: Cards[] = [];
 
     //Kartendeck erstellen
     for (let j = 0; j < allValues.length; j++) {
@@ -41,21 +41,21 @@ namespace Kartenspiel {
     }
 
     //Leere Arrays um Karten zwischenzulagern 
-    let playerCards: cards[] = [];
-    let computerCards: cards[] = [];
+    let playerCards: Cards[] = [];
+    let computerCards: Cards[] = [];
 
     //Karten werden aus Array allCards in Aray playerCards verschoben
     for (let i = 0; i < 5; i++) {
-        let lastCard: cards = allCards.pop();
+        let lastCard: Cards = allCards.pop();
         playerCards.push(lastCard);
     }
     //Karten aus Array allCards werden in computerCards Array verschoben
     for (let i = 0; i < 5; i++) {
-        let lastCard: cards = allCards.pop();
+        let lastCard: Cards = allCards.pop();
         computerCards.push(lastCard);
     }
 
-    let openCards: cards [] = [];
+    let openCards: Cards [] = [];
     openCards.push(allCards.pop());
 
     console.log("Spielerkarten", playerCards);
@@ -72,20 +72,13 @@ namespace Kartenspiel {
 
         showAllCards();
         cardStackNewDiv.addEventListener("click", function (): void {
-            let gezogeneKarte: cards | undefined = karteVonStapelZiehen ();
+            let gezogeneKarte: Cards | undefined = drawCardFromStack ();
             if (gezogeneKarte) {
                 playerCards.push (gezogeneKarte);
                 showAllCards();
                 computerTurn();
             }
         });
-        //let openCardshow: HTMLImageElement = imgKartenGenerieren(openCards);
-       // stapelDiv.appendChild(openCardshow);
-
-        //stapelDiv.innerHTML = "";
-        // //offene Karten anzeigen
-        // var offeneKarteBild: HTMLImageElement = imgKartenGenerieren(openCards);
-        // stapelDiv.appendChild(offeneKarteBild);
 
         function showAllCards(): void {
 
@@ -109,16 +102,14 @@ namespace Kartenspiel {
                 let playerCard: HTMLImageElement = imgGeneratCards(playerCards[a]);
                 handCardsDiv.appendChild(playerCard);
                 playerCard.addEventListener("click", function (): void {
-                    console.log(playerCards[a] + " wurde geklickt");
+                    //console.log(playerCards[a] + " wurde geklickt");
                     let fitCards: boolean = cardFits (playerCards[a]);
-                    console.log("Karte passt zu offener Karte " + fitCards);
+                    //console.log("Karte passt zu offener Karte " + fitCards);
                     //Wenn Karte passt wird diese auf offenen Stapel gelegen und aus Spielerkartenliste entfernt
                     if (fitCards) {
                         openCards.push(playerCards[a]);
-                        console.log("offene Karte " + openCards);
 
                         playerCards.splice(a, 1);
-                        console.log("spieler Karten " + playerCards);
 
                         showAllCards();
                         //computer ist dran
@@ -128,14 +119,28 @@ namespace Kartenspiel {
             }
             if (allCards.length === 0) {
             //cardStackNewDiv.innerHTML = ""; 
-            let neuerKartenstapel: cards = openCards.splice(0, openCards.length - 1);
-            allCards = shuffle(neuerKartenstapel);
-            console.log(allCards);
-        }
+            let newStack: Cards[] = openCards.splice(0, openCards.length - 1);
+            allCards = shuffle(newStack);
+            console.log("Stapel auffüllen")
+            if (allCards.length === 0) {
+                cardStackNewDiv.innerHTML = ""; 
+            }
+            
+            if (computerCards.length === 0 || playerCards.length === 0) {
+                let winnerDiv: HTMLDataElement = document.querySelector("winner");
+                winnerDiv.classList.remove("hidden");
+                if (computerCards.length === 0) {
+                    winnerDiv.innerHTML = "Computer gewinnt";
+                } else {
+                    winnerDiv.innerHTML = "Spieler gewinnt";
+                    }
+                }
+            }
+        
             
         }
         //Karte erzeugen 
-        function imgGeneratCards(karte: cards): HTMLImageElement {
+        function imgGeneratCards(karte: Cards): HTMLImageElement {
             let newCard: HTMLImageElement = new Image();
             newCard.className = "cards";
             if (karte.values === "card-back") {
@@ -143,50 +148,48 @@ namespace Kartenspiel {
             } else {
                 newCard.src = "./cards/" + karte.values + "-" + karte.color + ".png";
             }
-            
             return newCard;
         }
+
         //Funktion um gegebene Karten mit offener Karte zu vergleichen 
-        function cardFits(spielerKarte: cards): boolean {
-           // openCardsplit: string[] = openCards[openCards.length - 1].split("-");
-           // let cardNameSplit: string[] = kartenName.split("-");
-            let valueOk: boolean = spielerKarte.color ===  openCards[openCards.length - 1 ].color;
-            let colorOk: boolean = spielerKarte.values === openCards[openCards.length - 1].values;
+        function cardFits(playerCard: Cards): boolean {
+            let valueOk: boolean = playerCard.color ===  openCards[openCards.length - 1 ].color;
+            let colorOk: boolean = playerCard.values === openCards[openCards.length - 1].values;
             let OK: boolean = colorOk || valueOk;
             return OK;
         }
         function computerTurn(): void {
             //alle Computerkarten durchschauen ob eine passt
-            let indexVonPassenderKarte: number = -1;
+            let indexFromFitCard: number = -1;
             for (let i = 0; i < computerCards.length; i++) {
                 let cardFitsPC: boolean = cardFits(computerCards[i]);
                 if (cardFitsPC === true) {
-                    indexVonPassenderKarte = i;
+                    indexFromFitCard = i;
                 }
             }
             //wenn eine passt, Karte ablegen
-            if (indexVonPassenderKarte >= 0) {
+            if (indexFromFitCard >= 0) {
                 //Karte ablegen
-                openCards.push(computerCards[indexVonPassenderKarte]);
-                computerCards.splice(indexVonPassenderKarte, 1);
+                openCards.push(computerCards[indexFromFitCard]);
+                computerCards.splice(indexFromFitCard, 1);
             } else {
-                let gezogeneKarte : cards | undefined = karteVonStapelZiehen();
-                if(gezogeneKarte) {
-                    computerCards.push(gezogeneKarte);
+                 //wenn keine passt, dann Karte ziehen
+                let drawnCards: Cards | undefined = drawCardFromStack();
+                if (drawnCards) {
+                    computerCards.push(drawnCards);
                 }
             }
-            //wenn keine passt, dann Karte ziehen
             showAllCards();
             
         }
     }); 
-    function karteVonStapelZiehen(): cards {
+    function drawCardFromStack(): Cards {
         //prüfen ob Karten im Stapel sind
         if (allCards.length > 0) {
         //Karte ziehen aus allCards
-        let gezogeneKarte: cards = allCards.pop();
+        let drawnCard: Cards = allCards.pop();
         //gezogene Karte wieder zurück geben
-        return gezogeneKarte;
+        return drawnCard;
         }
     }
     

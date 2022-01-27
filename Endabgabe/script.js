@@ -54,19 +54,13 @@ var Kartenspiel;
         let handCardsDiv = document.querySelector("#handCards");
         showAllCards();
         cardStackNewDiv.addEventListener("click", function () {
-            let gezogeneKarte = karteVonStapelZiehen();
+            let gezogeneKarte = drawCardFromStack();
             if (gezogeneKarte) {
                 playerCards.push(gezogeneKarte);
                 showAllCards();
                 computerTurn();
             }
         });
-        //let openCardshow: HTMLImageElement = imgKartenGenerieren(openCards);
-        // stapelDiv.appendChild(openCardshow);
-        //stapelDiv.innerHTML = "";
-        // //offene Karten anzeigen
-        // var offeneKarteBild: HTMLImageElement = imgKartenGenerieren(openCards);
-        // stapelDiv.appendChild(offeneKarteBild);
         function showAllCards() {
             stapelDiv.innerHTML = "";
             let openCardshow = imgGeneratCards(openCards[openCards.length - 1]);
@@ -86,15 +80,13 @@ var Kartenspiel;
                 let playerCard = imgGeneratCards(playerCards[a]);
                 handCardsDiv.appendChild(playerCard);
                 playerCard.addEventListener("click", function () {
-                    console.log(playerCards[a] + " wurde geklickt");
+                    //console.log(playerCards[a] + " wurde geklickt");
                     let fitCards = cardFits(playerCards[a]);
-                    console.log("Karte passt zu offener Karte " + fitCards);
+                    //console.log("Karte passt zu offener Karte " + fitCards);
                     //Wenn Karte passt wird diese auf offenen Stapel gelegen und aus Spielerkartenliste entfernt
                     if (fitCards) {
                         openCards.push(playerCards[a]);
-                        console.log("offene Karte " + openCards);
                         playerCards.splice(a, 1);
-                        console.log("spieler Karten " + playerCards);
                         showAllCards();
                         //computer ist dran
                         computerTurn();
@@ -103,9 +95,22 @@ var Kartenspiel;
             }
             if (allCards.length === 0) {
                 //cardStackNewDiv.innerHTML = ""; 
-                let neuerKartenstapel = openCards.splice(0, openCards.length - 1);
-                allCards = shuffle(neuerKartenstapel);
-                console.log(allCards);
+                let newStack = openCards.splice(0, openCards.length - 1);
+                allCards = shuffle(newStack);
+                console.log("Stapel auffüllen");
+                if (allCards.length === 0) {
+                    cardStackNewDiv.innerHTML = "";
+                }
+                if (computerCards.length === 0 || playerCards.length === 0) {
+                    let winnerDiv = document.querySelector("winner");
+                    winnerDiv.classList.remove("hidden");
+                    if (computerCards.length === 0) {
+                        winnerDiv.innerHTML = "Computer gewinnt";
+                    }
+                    else {
+                        winnerDiv.innerHTML = "Spieler gewinnt";
+                    }
+                }
             }
         }
         //Karte erzeugen 
@@ -121,46 +126,44 @@ var Kartenspiel;
             return newCard;
         }
         //Funktion um gegebene Karten mit offener Karte zu vergleichen 
-        function cardFits(spielerKarte) {
-            // openCardsplit: string[] = openCards[openCards.length - 1].split("-");
-            // let cardNameSplit: string[] = kartenName.split("-");
-            let valueOk = spielerKarte.color === openCards[openCards.length - 1].color;
-            let colorOk = spielerKarte.values === openCards[openCards.length - 1].values;
+        function cardFits(playerCard) {
+            let valueOk = playerCard.color === openCards[openCards.length - 1].color;
+            let colorOk = playerCard.values === openCards[openCards.length - 1].values;
             let OK = colorOk || valueOk;
             return OK;
         }
         function computerTurn() {
             //alle Computerkarten durchschauen ob eine passt
-            let indexVonPassenderKarte = -1;
+            let indexFromFitCard = -1;
             for (let i = 0; i < computerCards.length; i++) {
                 let cardFitsPC = cardFits(computerCards[i]);
                 if (cardFitsPC === true) {
-                    indexVonPassenderKarte = i;
+                    indexFromFitCard = i;
                 }
             }
             //wenn eine passt, Karte ablegen
-            if (indexVonPassenderKarte >= 0) {
+            if (indexFromFitCard >= 0) {
                 //Karte ablegen
-                openCards.push(computerCards[indexVonPassenderKarte]);
-                computerCards.splice(indexVonPassenderKarte, 1);
+                openCards.push(computerCards[indexFromFitCard]);
+                computerCards.splice(indexFromFitCard, 1);
             }
             else {
-                let gezogeneKarte = karteVonStapelZiehen();
-                if (gezogeneKarte) {
-                    computerCards.push(gezogeneKarte);
+                //wenn keine passt, dann Karte ziehen
+                let drawnCards = drawCardFromStack();
+                if (drawnCards) {
+                    computerCards.push(drawnCards);
                 }
             }
-            //wenn keine passt, dann Karte ziehen
             showAllCards();
         }
     });
-    function karteVonStapelZiehen() {
+    function drawCardFromStack() {
         //prüfen ob Karten im Stapel sind
         if (allCards.length > 0) {
             //Karte ziehen aus allCards
-            let gezogeneKarte = allCards.pop();
+            let drawnCard = allCards.pop();
             //gezogene Karte wieder zurück geben
-            return gezogeneKarte;
+            return drawnCard;
         }
     }
 })(Kartenspiel || (Kartenspiel = {}));
