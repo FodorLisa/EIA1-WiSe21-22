@@ -7,6 +7,7 @@ body {
     color: white;
   }
 #desk {
+  z-index: 20;
   width: 1050px;
   position: absolute;
   top: 680px;

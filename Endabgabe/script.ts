@@ -1,22 +1,27 @@
 namespace Kartenspiel {
     //Konstanten um Karten zu erstellen
+    interface cards {
+        color: string;
+        values: string;
+    }
     const allColor: string[] = ["B", "R", "Y", "G"];
     const allValues: string[] = ["1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
     //Leeres Array um Karten zwischenzulagern
-    let allCards: string[] = [];
+    let allCards: cards[] = [];
 
     //Kartendeck erstellen
     for (let j = 0; j < allValues.length; j++) {
         for (let i = 0; i < allColor.length; i++) {
-            allCards.push(allValues[j] + "-" + allColor[i]);
-        }
+            allCards.push({color: allValues[j],
+                values: allValues[j]
+        });
     }
 
-    allCards = shuffle(allCards);
+        allCards = shuffle(allCards);
 
     //Shuffle Funktion von https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-    function shuffle (array) {
+        function shuffle (array) {
         let currentIndex = array.length, randomIndex;
 
         // While there remain elements to shuffle...
@@ -35,30 +40,30 @@ namespace Kartenspiel {
     }
 
     //Leere Arrays um Karten zwischenzulagern 
-    let playerCards: string[] = [];
-    let computerCards: string[] = [];
+        let playerCards: cards[] = [];
+        let computerCards: cards[] = [];
 
     //Karten werden aus Array allCards in Aray playerCards verschoben
-    for (let i = 0; i < 5; i++) {
-        let lastCard: string = allCards.pop();
+        for (let i = 0; i < 5; i++) {
+        let lastCard: cards = allCards.pop();
         playerCards.push(lastCard);
     }
     //Karten aus Array allCards werden in computerCards Array verschoben
-    for (let i = 0; i < 5; i++) {
-        let lastCard: string = allCards.pop();
+        for (let i = 0; i < 5; i++) {
+        let lastCard: cards = allCards.pop();
         computerCards.push(lastCard);
     }
 
-    let openCards: string [] = [];
-    openCards.push(allCards.pop());
+        let openCards: cards [] = [];
+        openCards.push(allCards.pop());
 
-    console.log("Spielerkarten", playerCards);
-    console.log("Computerkarten", computerCards);
-    console.log("alleKarten", allCards);
-    console.log("offene Karten", openCards);
+        console.log("Spielerkarten", playerCards);
+        console.log("Computerkarten", computerCards);
+        console.log("alleKarten", allCards);
+        console.log("offene Karten", openCards);
 
     ///EventListener damit DOM manipuliert werden kann, nachdem Script geladen wurde wenn auf Karte geklickt wird
-    window.addEventListener("load", function (): void {
+        window.addEventListener("load", function (): void {
         let deskPCDiv: HTMLDataElement = document.querySelector("#deskPC");
         let stapelDiv: HTMLDataElement = document.querySelector("#cardStackOld");
         let cardStackNewDiv: HTMLDataElement = document.querySelector("#cardStackNew");
@@ -84,7 +89,10 @@ namespace Kartenspiel {
 
             // Karten für Computer erstellen und anzeigen lassen
             for (let c = 0; c < computerCards.length; c++) {
-                let cardImage: HTMLImageElement = imgGeneratCards("card-back");
+                let cardImage: HTMLImageElement = imgGeneratCards({
+                    color: "card-back",
+                    values: "card-back"
+                });
                 deskPCDiv.appendChild(cardImage);
             }
             handCardsDiv.innerHTML = "";
@@ -110,18 +118,23 @@ namespace Kartenspiel {
             }
         }
         //Karte erzeugen 
-        function imgGeneratCards(kartenName: string): HTMLImageElement {
+        function imgGeneratCards(karte: cards): HTMLImageElement {
             let newCard: HTMLImageElement = new Image();
             newCard.className = "cards";
-            newCard.src = "./cards/" + kartenName + ".png";
+            if(karte.values === "card-back") {
+                newCard.src = "./cards/card-back.png";
+            } else {
+                newCard.src = "./cards/" + karte.values + karte.color + ".png";
+            }
+            
             return newCard;
         }
         //Funktion um gegebene Karten mit offener Karte zu vergleichen 
-        function cardFits(kartenName: string): boolean {
-            let openCardsplit: string[] = openCards[openCards.length - 1].split("-");
-            let cardNameSplit: string[] = kartenName.split("-");
-            let valueOk: boolean = openCardsplit[0] === cardNameSplit[0];
-            let colorOk: boolean = openCardsplit[1] === cardNameSplit[1];
+        function cardFits(spielerKarte: cards): boolean {
+           // openCardsplit: string[] = openCards[openCards.length - 1].split("-");
+           // let cardNameSplit: string[] = kartenName.split("-");
+            let valueOk: boolean = spielerKarte.color ===  openCards[openCards.length - 1 ].color;
+            let colorOk: boolean = spielerKarte.values === openCards[openCards.length - 1].values;
             let OK: boolean = colorOk || valueOk;
             return OK;
         }
