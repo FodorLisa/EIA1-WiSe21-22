@@ -58,82 +58,110 @@ var Kartenspiel;
             if (gezogeneKarte) {
                 playerCards.push(gezogeneKarte);
                 showAllCards();
-            }
-            //let openCardshow: HTMLImageElement = imgKartenGenerieren(openCards);
-            // stapelDiv.appendChild(openCardshow);
-            //stapelDiv.innerHTML = "";
-            // //offene Karten anzeigen
-            // var offeneKarteBild: HTMLImageElement = imgKartenGenerieren(openCards);
-            // stapelDiv.appendChild(offeneKarteBild);
-            function showAllCards() {
-                stapelDiv.innerHTML = "";
-                let openCardshow = imgGeneratCards(openCards[openCards.length - 1]);
-                stapelDiv.appendChild(openCardshow);
-                deskPCDiv.innerHTML = "";
-                // Karten für Computer erstellen und anzeigen lassen
-                for (let c = 0; c < computerCards.length; c++) {
-                    let cardImage = imgGeneratCards({
-                        color: "card-back",
-                        values: "card-back"
-                    });
-                    deskPCDiv.appendChild(cardImage);
-                }
-                handCardsDiv.innerHTML = "";
-                //Anzeigen lassen von Karten nachdem diese gelöscht wurden
-                for (let a = 0; a < playerCards.length; a++) {
-                    let playerCard = imgGeneratCards(playerCards[a]);
-                    handCardsDiv.appendChild(playerCard);
-                    playerCard.addEventListener("click", function () {
-                        console.log(playerCards[a] + " wurde geklickt");
-                        let fitCards = cardFits(playerCards[a]);
-                        console.log("Karte passt zu offener Karte " + fitCards);
-                        //Wenn Karte passt wird diese auf offenen Stapel gelegen und aus Spielerkartenliste entfernt
-                        if (fitCards) {
-                            openCards.push(playerCards[a]);
-                            console.log("offene Karte " + openCards);
-                            playerCards.splice(a, 1);
-                            console.log("spieler Karten " + playerCards);
-                            showAllCards();
-                        }
-                    });
-                }
+                computerTurn();
             }
         });
-    }
-    //Karte erzeugen 
-    , 
-    //Karte erzeugen 
-    function imgGeneratCards(karte) {
-        let newCard = new Image();
-        newCard.className = "cards";
-        if (karte.values === "card-back") {
-            newCard.src = "./cards/card-back.png";
+        //let openCardshow: HTMLImageElement = imgKartenGenerieren(openCards);
+        // stapelDiv.appendChild(openCardshow);
+        //stapelDiv.innerHTML = "";
+        // //offene Karten anzeigen
+        // var offeneKarteBild: HTMLImageElement = imgKartenGenerieren(openCards);
+        // stapelDiv.appendChild(offeneKarteBild);
+        function showAllCards() {
+            stapelDiv.innerHTML = "";
+            let openCardshow = imgGeneratCards(openCards[openCards.length - 1]);
+            stapelDiv.appendChild(openCardshow);
+            deskPCDiv.innerHTML = "";
+            // Karten für Computer erstellen und anzeigen lassen
+            for (let c = 0; c < computerCards.length; c++) {
+                let cardImage = imgGeneratCards({
+                    color: "card-back",
+                    values: "card-back"
+                });
+                deskPCDiv.appendChild(cardImage);
+            }
+            handCardsDiv.innerHTML = "";
+            //Anzeigen lassen von Karten nachdem diese gelöscht wurden
+            for (let a = 0; a < playerCards.length; a++) {
+                let playerCard = imgGeneratCards(playerCards[a]);
+                handCardsDiv.appendChild(playerCard);
+                playerCard.addEventListener("click", function () {
+                    console.log(playerCards[a] + " wurde geklickt");
+                    let fitCards = cardFits(playerCards[a]);
+                    console.log("Karte passt zu offener Karte " + fitCards);
+                    //Wenn Karte passt wird diese auf offenen Stapel gelegen und aus Spielerkartenliste entfernt
+                    if (fitCards) {
+                        openCards.push(playerCards[a]);
+                        console.log("offene Karte " + openCards);
+                        playerCards.splice(a, 1);
+                        console.log("spieler Karten " + playerCards);
+                        showAllCards();
+                        //computer ist dran
+                        computerTurn();
+                    }
+                });
+            }
+            if (allCards.length === 0) {
+                //cardStackNewDiv.innerHTML = ""; 
+                let neuerKartenstapel = openCards.splice(0, openCards.length - 1);
+                allCards = shuffle(neuerKartenstapel);
+                console.log(allCards);
+            }
         }
-        else {
-            newCard.src = "./cards/" + karte.values + "-" + karte.color + ".png";
+        //Karte erzeugen 
+        function imgGeneratCards(karte) {
+            let newCard = new Image();
+            newCard.className = "cards";
+            if (karte.values === "card-back") {
+                newCard.src = "./cards/card-back.png";
+            }
+            else {
+                newCard.src = "./cards/" + karte.values + "-" + karte.color + ".png";
+            }
+            return newCard;
         }
-        return newCard;
-    }
-    //Funktion um gegebene Karten mit offener Karte zu vergleichen 
-    , 
-    //Funktion um gegebene Karten mit offener Karte zu vergleichen 
-    function cardFits(spielerKarte) {
-        // openCardsplit: string[] = openCards[openCards.length - 1].split("-");
-        // let cardNameSplit: string[] = kartenName.split("-");
-        let valueOk = spielerKarte.color === openCards[openCards.length - 1].color;
-        let colorOk = spielerKarte.values === openCards[openCards.length - 1].values;
-        let OK = colorOk || valueOk;
-        return OK;
+        //Funktion um gegebene Karten mit offener Karte zu vergleichen 
+        function cardFits(spielerKarte) {
+            // openCardsplit: string[] = openCards[openCards.length - 1].split("-");
+            // let cardNameSplit: string[] = kartenName.split("-");
+            let valueOk = spielerKarte.color === openCards[openCards.length - 1].color;
+            let colorOk = spielerKarte.values === openCards[openCards.length - 1].values;
+            let OK = colorOk || valueOk;
+            return OK;
+        }
+        function computerTurn() {
+            //alle Computerkarten durchschauen ob eine passt
+            let indexVonPassenderKarte = -1;
+            for (let i = 0; i < computerCards.length; i++) {
+                let cardFitsPC = cardFits(computerCards[i]);
+                if (cardFitsPC === true) {
+                    indexVonPassenderKarte = i;
+                }
+            }
+            //wenn eine passt, Karte ablegen
+            if (indexVonPassenderKarte >= 0) {
+                //Karte ablegen
+                openCards.push(computerCards[indexVonPassenderKarte]);
+                computerCards.splice(indexVonPassenderKarte, 1);
+            }
+            else {
+                let gezogeneKarte = karteVonStapelZiehen();
+                if (gezogeneKarte) {
+                    computerCards.push(gezogeneKarte);
+                }
+            }
+            //wenn keine passt, dann Karte ziehen
+            showAllCards();
+        }
     });
-})(Kartenspiel || (Kartenspiel = {}));
-;
-function karteVonStapelZiehen() {
-    //prüfen ob Karten im Stapel sind
-    if (allCards.length > 0) {
-        //Karte ziehen aus allCards
-        let gezogeneKarte = allCards.pop();
-        //gezogene Karte wieder zurück geben
-        return gezogeneKarte;
+    function karteVonStapelZiehen() {
+        //prüfen ob Karten im Stapel sind
+        if (allCards.length > 0) {
+            //Karte ziehen aus allCards
+            let gezogeneKarte = allCards.pop();
+            //gezogene Karte wieder zurück geben
+            return gezogeneKarte;
+        }
     }
-}
+})(Kartenspiel || (Kartenspiel = {}));
 //# sourceMappingURL=script.js.map

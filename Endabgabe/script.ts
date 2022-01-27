@@ -73,11 +73,12 @@ namespace Kartenspiel {
         showAllCards();
         cardStackNewDiv.addEventListener("click", function (): void {
             let gezogeneKarte: cards | undefined = karteVonStapelZiehen ();
-            if(gezogeneKarte) {
+            if (gezogeneKarte) {
                 playerCards.push (gezogeneKarte);
                 showAllCards();
+                computerTurn();
             }
-
+        });
         //let openCardshow: HTMLImageElement = imgKartenGenerieren(openCards);
        // stapelDiv.appendChild(openCardshow);
 
@@ -120,11 +121,18 @@ namespace Kartenspiel {
                         console.log("spieler Karten " + playerCards);
 
                         showAllCards();
+                        //computer ist dran
+                        computerTurn();
                     }
                 });
             }
-         
-            });
+            if (allCards.length === 0) {
+            //cardStackNewDiv.innerHTML = ""; 
+            let neuerKartenstapel: cards = openCards.splice(0, openCards.length - 1);
+            allCards = shuffle(neuerKartenstapel);
+            console.log(allCards);
+        }
+            
         }
         //Karte erzeugen 
         function imgGeneratCards(karte: cards): HTMLImageElement {
@@ -147,17 +155,40 @@ namespace Kartenspiel {
             let OK: boolean = colorOk || valueOk;
             return OK;
         }
+        function computerTurn(): void {
+            //alle Computerkarten durchschauen ob eine passt
+            let indexVonPassenderKarte: number = -1;
+            for (let i = 0; i < computerCards.length; i++) {
+                let cardFitsPC: boolean = cardFits(computerCards[i]);
+                if (cardFitsPC === true) {
+                    indexVonPassenderKarte = i;
+                }
+            }
+            //wenn eine passt, Karte ablegen
+            if (indexVonPassenderKarte >= 0) {
+                //Karte ablegen
+                openCards.push(computerCards[indexVonPassenderKarte]);
+                computerCards.splice(indexVonPassenderKarte, 1);
+            } else {
+                let gezogeneKarte : cards | undefined = karteVonStapelZiehen();
+                if(gezogeneKarte) {
+                    computerCards.push(gezogeneKarte);
+                }
+            }
+            //wenn keine passt, dann Karte ziehen
+            showAllCards();
+            
+        }
     }); 
-    function karteVonStapelZiehen():cards{
+    function karteVonStapelZiehen(): cards {
         //prüfen ob Karten im Stapel sind
-        if(allCards.length >0){
+        if (allCards.length > 0) {
         //Karte ziehen aus allCards
         let gezogeneKarte: cards = allCards.pop();
         //gezogene Karte wieder zurück geben
         return gezogeneKarte;
         }
-        
-        
     }
+    
 }
 
