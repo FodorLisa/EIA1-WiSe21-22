@@ -13,15 +13,16 @@ namespace Kartenspiel {
     //Kartendeck erstellen
     for (let j = 0; j < allValues.length; j++) {
         for (let i = 0; i < allColor.length; i++) {
-            allCards.push({color: allValues[j],
-                values: allValues[j]
-        });
+            allCards.push({color: allColor[i],
+                values: allValues[j]});
     }
+    }
+    
 
-        allCards = shuffle(allCards);
+    allCards = shuffle(allCards);
 
     //Shuffle Funktion von https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
-        function shuffle (array) {
+    function shuffle (array) {
         let currentIndex = array.length, randomIndex;
 
         // While there remain elements to shuffle...
@@ -40,36 +41,42 @@ namespace Kartenspiel {
     }
 
     //Leere Arrays um Karten zwischenzulagern 
-        let playerCards: cards[] = [];
-        let computerCards: cards[] = [];
+    let playerCards: cards[] = [];
+    let computerCards: cards[] = [];
 
     //Karten werden aus Array allCards in Aray playerCards verschoben
-        for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
         let lastCard: cards = allCards.pop();
         playerCards.push(lastCard);
     }
     //Karten aus Array allCards werden in computerCards Array verschoben
-        for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 5; i++) {
         let lastCard: cards = allCards.pop();
         computerCards.push(lastCard);
     }
 
-        let openCards: cards [] = [];
-        openCards.push(allCards.pop());
+    let openCards: cards [] = [];
+    openCards.push(allCards.pop());
 
-        console.log("Spielerkarten", playerCards);
-        console.log("Computerkarten", computerCards);
-        console.log("alleKarten", allCards);
-        console.log("offene Karten", openCards);
+    console.log("Spielerkarten", playerCards);
+    console.log("Computerkarten", computerCards);
+    console.log("alleKarten", allCards);
+    console.log("offene Karten", openCards);
 
     ///EventListener damit DOM manipuliert werden kann, nachdem Script geladen wurde wenn auf Karte geklickt wird
-        window.addEventListener("load", function (): void {
+    window.addEventListener("load", function (): void {
         let deskPCDiv: HTMLDataElement = document.querySelector("#deskPC");
         let stapelDiv: HTMLDataElement = document.querySelector("#cardStackOld");
         let cardStackNewDiv: HTMLDataElement = document.querySelector("#cardStackNew");
         let handCardsDiv: HTMLDataElement = document.querySelector("#handCards");
 
         showAllCards();
+        cardStackNewDiv.addEventListener("click", function (): void {
+            let gezogeneKarte: cards | undefined = karteVonStapelZiehen ();
+            if(gezogeneKarte) {
+                playerCards.push (gezogeneKarte);
+                showAllCards();
+            }
 
         //let openCardshow: HTMLImageElement = imgKartenGenerieren(openCards);
        // stapelDiv.appendChild(openCardshow);
@@ -116,15 +123,17 @@ namespace Kartenspiel {
                     }
                 });
             }
+         
+            });
         }
         //Karte erzeugen 
         function imgGeneratCards(karte: cards): HTMLImageElement {
             let newCard: HTMLImageElement = new Image();
             newCard.className = "cards";
-            if(karte.values === "card-back") {
+            if (karte.values === "card-back") {
                 newCard.src = "./cards/card-back.png";
             } else {
-                newCard.src = "./cards/" + karte.values + karte.color + ".png";
+                newCard.src = "./cards/" + karte.values + "-" + karte.color + ".png";
             }
             
             return newCard;
@@ -138,5 +147,17 @@ namespace Kartenspiel {
             let OK: boolean = colorOk || valueOk;
             return OK;
         }
-    });
+    }); 
+    function karteVonStapelZiehen():cards{
+        //prüfen ob Karten im Stapel sind
+        if(allCards.length >0){
+        //Karte ziehen aus allCards
+        let gezogeneKarte: cards = allCards.pop();
+        //gezogene Karte wieder zurück geben
+        return gezogeneKarte;
+        }
+        
+        
+    }
 }
+
